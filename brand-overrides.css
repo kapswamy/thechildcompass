@@ -1,0 +1,7 @@
+/* Approved horizontal logo is sourced from the supplied brand board. */
+.brand{display:flex;align-items:center;color:var(--ink);text-decoration:none;line-height:1}
+.logo-image{display:block;width:170px;height:70px;background:url('assets/brand-logo-board.jpeg') 0 80%/540% auto no-repeat}
+.contact-actions{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.phone-link{color:#e0ffff;font-size:.86rem;font-weight:700;text-decoration:none}
+.phone-link:hover{text-decoration:underline}
+@media(max-width:780px){.logo-image{width:145px;height:60px;background-size:540% auto}}
