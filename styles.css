@@ -253,25 +253,30 @@ p:last-child {
   line-height: 1;
 }
 .header-logo-img {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   object-fit: contain;
   background: var(--white);
-  border: 1.5px solid var(--border-mint);
+  border: 2px solid var(--teal);
   padding: 2px;
-  box-shadow: 0 2px 8px rgba(13, 43, 79, 0.08);
+  box-shadow: 0 3px 10px rgba(20, 187, 166, 0.2);
   flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.header-logo-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(20, 187, 166, 0.3);
 }
 .footer-logo-img {
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   object-fit: contain;
   background: var(--white);
-  border: 1.5px solid var(--border-mint);
+  border: 2px solid var(--teal);
   padding: 2px;
-  box-shadow: 0 2px 8px rgba(13, 43, 79, 0.08);
+  box-shadow: 0 3px 10px rgba(20, 187, 166, 0.2);
   flex-shrink: 0;
 }
 .brand-text {
@@ -2735,6 +2740,11 @@ p:last-child {
 
 /* Mobile: <= 768px */
 @media (max-width: 768px) {
+  .header-logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
   /* Offset body padding for mobile sticky bar */
   body {
     padding-bottom: 74px;

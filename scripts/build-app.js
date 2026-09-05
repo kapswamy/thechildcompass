@@ -23,7 +23,8 @@ const filesToCopy = [
   'chat.css',
   'brand-overrides.css',
   'guide-overrides.css',
-  'script.js'
+  'script.js',
+  'favicon.png'
 ];
 
 for (const file of filesToCopy) {
