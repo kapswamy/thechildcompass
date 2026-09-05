@@ -83,21 +83,9 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "13:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "16:30",
-            "closes": "20:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Sunday"],
             "opens": "10:00",
-            "closes": "13:00"
+            "closes": "18:00"
           }
         ]
       },
@@ -867,16 +855,26 @@
           <div class="info-block">
             <div class="info-icon" aria-hidden="true">⏰</div>
             <div class="info-content">
-              <strong>Consultation Hours</strong>
+              <strong>Clinic Visiting &amp; Consultation Hours</strong>
+              <div class="timing-notice-banner">
+                <span class="notice-badge">Current Timings</span>
+                <span>In-person clinic visits &amp; appointments are currently on <strong>Sundays only</strong>.</span>
+              </div>
               <table class="hours-table">
                 <tbody>
-                  <tr>
-                    <td>Monday – Saturday</td>
-                    <td><strong>09:00 AM – 01:00 PM</strong><br /><strong>04:30 PM – 08:00 PM</strong></td>
+                  <tr class="highlight-row">
+                    <td><strong>Sunday</strong></td>
+                    <td>
+                      <strong class="hours-time">10:00 AM – 06:00 PM</strong><br />
+                      <span class="hours-subtext">Open for in-person consultation &amp; child health visits (Prior appointment recommended)</span>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>Sunday</td>
-                    <td><strong>10:00 AM – 01:00 PM</strong><br /><small>(By prior appointment only)</small></td>
+                  <tr class="closed-row">
+                    <td>Monday – Saturday</td>
+                    <td>
+                      <span class="badge-closed">Closed for Routine Walk-ins</span><br />
+                      <span class="hours-subtext">Online booking &amp; emergency phone/WhatsApp triage available</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -930,6 +928,13 @@
           <p>
             Book your consultation with <strong>Dr. Vishnuvardhan K</strong>. Fill out this brief form, and our front desk will immediately confirm your time slot or assist you via WhatsApp.
           </p>
+
+          <div class="booking-timing-alert">
+            <span class="timing-alert-icon">🗓️</span>
+            <div>
+              <strong>Sunday Clinic Schedule:</strong> In-person consultations &amp; clinic visits are presently conducted <strong>exclusively on Sundays (10:00 AM – 06:00 PM)</strong>.
+            </div>
+          </div>
 
           <div class="booking-quick-features">
             <div class="qf-item">
@@ -1000,21 +1005,22 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label for="preferred-date">Preferred Date <span class="required">*</span></label>
+                <label for="preferred-date">Preferred Date (Sunday) <span class="required">*</span></label>
                 <input type="date" id="preferred-date" name="preferredDate" required />
-                <span class="error-msg" id="preferred-date-error">Please choose a valid appointment date</span>
+                <span class="field-hint" id="preferred-date-hint">Clinic visits are conducted on Sundays only (10 AM – 6 PM)</span>
+                <span class="error-msg" id="preferred-date-error">Please choose an upcoming Sunday</span>
               </div>
 
               <div class="form-group">
-                <label for="preferred-time">Preferred Time Slot <span class="required">*</span></label>
+                <label for="preferred-time">Preferred Time Slot (Sunday) <span class="required">*</span></label>
                 <select id="preferred-time" name="preferredTime" required>
-                  <option value="">Select Time Slot</option>
-                  <option value="Morning (9:30 AM – 11:30 AM)">Morning (9:30 AM – 11:30 AM)</option>
-                  <option value="Noon (11:30 AM – 01:00 PM)">Noon (11:30 AM – 01:00 PM)</option>
-                  <option value="Evening (04:30 PM – 06:30 PM)">Evening (04:30 PM – 06:30 PM)</option>
-                  <option value="Late Evening (06:30 PM – 08:00 PM)">Late Evening (06:30 PM – 08:00 PM)</option>
+                  <option value="">Select Sunday Time Slot</option>
+                  <option value="Morning (10:00 AM – 12:00 PM)">Morning (10:00 AM – 12:00 PM)</option>
+                  <option value="Midday (12:00 PM – 02:00 PM)">Midday (12:00 PM – 02:00 PM)</option>
+                  <option value="Afternoon (02:00 PM – 04:00 PM)">Afternoon (02:00 PM – 04:00 PM)</option>
+                  <option value="Evening (04:00 PM – 06:00 PM)">Evening (04:00 PM – 06:00 PM)</option>
                 </select>
-                <span class="error-msg" id="preferred-time-error">Please select a preferred slot</span>
+                <span class="error-msg" id="preferred-time-error">Please select a Sunday time slot</span>
               </div>
             </div>
 
@@ -1084,6 +1090,7 @@
           <li><a href="#doctor">Dr. Vishnuvardhan Profile</a></li>
           <li><a href="#booking">Book an Appointment</a></li>
           <li><a href="#" data-open-modal="emergency-modal">Emergency Warning Signs</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
 
@@ -1100,7 +1107,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© <span id="current-year"></span> The Child Compass. All rights reserved.</p>
+      <p>© <span id="current-year"></span> The Child Compass. All rights reserved. · <a href="privacy.html" style="color: #93c5fd; text-decoration: underline;">Privacy Policy</a></p>
       <p>The Child Compass, 4-1-479, Opp. Raghavendra Swamy temple, APHB Colony Phase -II, MIG-80, Alampally Road, Vikarabad, Telangana — 501101.</p>
     </div>
   </footer>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">The Child Compass</string>
+    <string name="title_activity_main">The Child Compass</string>
+    <string name="package_name">com.thechildcompass.app</string>
+    <string name="custom_url_scheme">com.thechildcompass.app</string>
+</resources>
