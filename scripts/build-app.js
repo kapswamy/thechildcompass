@@ -24,7 +24,8 @@ const filesToCopy = [
   'brand-overrides.css',
   'guide-overrides.css',
   'script.js',
-  'favicon.png'
+  'favicon.png',
+  'verifyforzoho.html'
 ];
 
 for (const file of filesToCopy) {
