@@ -16,9 +16,14 @@ A fast, mobile-first static website for The Child Compass. It uses only HTML, CS
 - Add the final website address to the `og:url` and structured data once the chosen spelling/domain is confirmed.
 - Review medical content and add a privacy policy before collecting appointments or health information online.
 
+## Enable the AI Parent Guide
+
+The chat interface is included, but it is deliberately not active until a secure backend is deployed. Follow [the worker setup guide](worker/README.md), then replace `https://YOUR-WORKER.workers.dev/chat` in `index.html` with the deployed Worker `/chat` URL. Never add an OpenAI API key to the website files or GitHub repository.
+
 ## Files
 
 - `index.html` - content, SEO metadata, and structure
 - `styles.css` - responsive visual design
 - `script.js` - mobile navigation
 - `assets/` - supplied practice/education visuals
+- `worker/` - secure server-side AI chat backend and deployment instructions

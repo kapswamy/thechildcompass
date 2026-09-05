@@ -1,0 +1,10 @@
+﻿{
+  "name": "the-child-compass",
+  "version": "1.0.0",
+  "description": "The Child Compass - Vikarabad Clinic Website",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}

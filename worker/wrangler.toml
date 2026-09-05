@@ -1,0 +1,8 @@
+name = "the-child-compass-chat"
+main = "src/index.js"
+compatibility_date = "2026-08-30"
+
+# Add the final website domain before production deployment.
+[vars]
+ALLOWED_ORIGIN = "https://YOUR-DOMAIN.example"
+# Set OPENAI_MODEL securely with: wrangler secret put OPENAI_MODEL
