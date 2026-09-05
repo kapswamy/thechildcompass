@@ -480,15 +480,57 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const bookingForm = document.getElementById('appointment-form');
   const preferredDateInput = document.getElementById('preferred-date');
+  const preferredDateError = document.getElementById('preferred-date-error');
+  const preferredDateHint = document.getElementById('preferred-date-hint');
   const bookingSuccessBox = document.getElementById('booking-success');
   const successSummary = document.getElementById('success-summary');
   const forwardWhatsAppBtn = document.getElementById('forward-whatsapp-btn');
   const bookAnotherBtn = document.getElementById('book-another-btn');
 
-  // Set minimum booking date to today
+  // Helper to check if a date string (YYYY-MM-DD) falls on a Sunday
+  function isSundayDate(dateString) {
+    if (!dateString) return false;
+    const parts = dateString.split('-');
+    if (parts.length !== 3) return false;
+    const dateObj = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    return !isNaN(dateObj.getTime()) && dateObj.getDay() === 0;
+  }
+
+  // Set minimum booking date to today and display upcoming Sunday hint
   if (preferredDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    preferredDateInput.min = today;
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    preferredDateInput.min = todayStr;
+
+    // Calculate nearest upcoming Sunday
+    const daysUntilSunday = (7 - today.getDay()) % 7;
+    const nextSunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (daysUntilSunday === 0 ? 0 : daysUntilSunday));
+    const formattedNextSunday = nextSunday.toLocaleDateString('en-IN', {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+
+    if (preferredDateHint) {
+      preferredDateHint.textContent = `Consultations on Sundays only (10 AM – 6 PM). Next Sunday: ${formattedNextSunday}.`;
+    }
+
+    // Instant validation on date change
+    preferredDateInput.addEventListener('change', () => {
+      const chosenVal = preferredDateInput.value;
+      if (chosenVal && !isSundayDate(chosenVal)) {
+        validateField(preferredDateInput, false);
+        if (preferredDateError) {
+          preferredDateError.textContent = 'Appointments are held on Sundays only (10:00 AM – 06:00 PM). Please select a Sunday.';
+        }
+      } else if (chosenVal) {
+        validateField(preferredDateInput, true);
+        if (preferredDateError) {
+          preferredDateError.textContent = 'Please choose an upcoming Sunday';
+        }
+      }
+    });
   }
 
   function validateField(inputEl, condition) {
@@ -528,7 +570,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const isPhoneValid = validateField(phoneInput, /^[6-9]\d{9}$/.test(phoneInput.value.replace(/[\s-]/g, '')));
       const isChildValid = validateField(childInput, childInput.value.trim().length >= 2);
       const isPurposeValid = validateField(purposeSelect, purposeSelect.value !== '');
-      const isDateValid = validateField(dateInput, dateInput.value !== '');
+      
+      // Validate that date is provided AND is specifically a Sunday
+      const dateVal = dateInput.value;
+      const isDateSunday = dateVal !== '' && isSundayDate(dateVal);
+      if (dateVal && !isSundayDate(dateVal) && preferredDateError) {
+        preferredDateError.textContent = 'Appointments are held on Sundays only (10:00 AM – 06:00 PM). Please select a Sunday.';
+      } else if (preferredDateError) {
+        preferredDateError.textContent = 'Please choose an upcoming Sunday';
+      }
+      const isDateValid = validateField(dateInput, isDateSunday);
       const isTimeValid = validateField(timeSelect, timeSelect.value !== '');
 
       if (!isNameValid || !isPhoneValid || !isChildValid || !isPurposeValid || !isDateValid || !isTimeValid) {
@@ -550,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update success message
       if (successSummary) {
-        successSummary.innerHTML = `<strong>Reference: ${refCode}</strong><br />Thank you, ${parentName}. We have registered your appointment request for <strong>${childInfo}</strong> for <strong>${purpose}</strong> on <strong>${date} (${slot})</strong>. Our Vikarabad clinic front desk will call you to confirm.`;
+        successSummary.innerHTML = `<strong>Reference: ${refCode}</strong><br />Thank you, ${parentName}. We have registered your Sunday appointment request for <strong>${childInfo}</strong> for <strong>${purpose}</strong> on <strong>Sunday (${date}) at ${slot}</strong>. Our Vikarabad clinic front desk will call you to confirm.`;
       }
 
       // Construct formatted WhatsApp message
@@ -560,10 +611,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `• Contact Phone: ${phone}\n` +
         `• Child: ${childInfo}\n` +
         `• Purpose of Visit: ${purpose}\n` +
-        `• Preferred Date: ${date}\n` +
-        `• Preferred Slot: ${slot}\n` +
+        `• Preferred Sunday Date: ${date}\n` +
+        `• Sunday Time Slot: ${slot}\n` +
         (notes ? `• Notes: ${notes}\n` : '') +
-        `\nPlease confirm availability. Thank you!`;
+        `\nNote: Sunday clinic consultation hours (10:00 AM – 06:00 PM). Please confirm availability. Thank you!`;
 
       const encodedWaUrl = `https://wa.me/919876543210?text=${encodeURIComponent(rawWaMessage)}`;
       if (forwardWhatsAppBtn) {
@@ -648,6 +699,10 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       keywords: ['speech', 'talking', 'words', 'milestone', 'talk'],
       reply: "Language guide: By 12 months, babies should babble and wave bye-bye. By 18 months, speak 6–10 single words. By 24 months, combine 2 words ('more milk'). If you notice loss of words or lack of response to name, schedule a developmental evaluation with Dr. Vishnuvardhan."
+    },
+    {
+      keywords: ['timing', 'timings', 'hour', 'hours', 'open', 'sunday', 'schedule', 'when', 'visiting', 'appointment', 'slot', 'day'],
+      reply: "Presently, in-person clinic visits and consultations are held exclusively on Sundays from 10:00 AM to 06:00 PM. Prior appointment booking is recommended. You can reserve your preferred Sunday slot directly on this page or message our care desk on WhatsApp at +91 98765 43210."
     }
   ];
 

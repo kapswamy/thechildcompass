@@ -1672,16 +1672,72 @@ p:last-child {
   font-size: 0.88rem;
 }
 .hours-table td {
-  padding: 6px 0;
+  padding: 10px 8px;
   border-bottom: 1px dashed var(--border-light);
   vertical-align: top;
 }
 .hours-table td:first-child {
   color: var(--text-muted);
-  width: 45%;
+  width: 42%;
 }
 .hours-table td:last-child {
   color: var(--navy);
+}
+
+.timing-notice-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-light);
+  border: 1px solid var(--mint);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin: 10px 0 12px;
+  font-size: 0.82rem;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.notice-badge {
+  background: var(--teal);
+  color: var(--white);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.hours-table .highlight-row td {
+  background: rgba(20, 187, 166, 0.06);
+  border-left: 3px solid var(--teal);
+  padding-left: 10px;
+}
+.hours-table .closed-row td {
+  opacity: 0.85;
+}
+.hours-time {
+  font-size: 0.95rem;
+  color: var(--navy);
+  display: inline-block;
+  margin-bottom: 3px;
+}
+.hours-subtext {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  display: inline-block;
+}
+.badge-closed {
+  display: inline-block;
+  background: #F1F5F9;
+  color: #64748B;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 3px;
 }
 
 .branch-map-card {
@@ -1740,6 +1796,30 @@ p:last-child {
   color: #D3E2F0;
   font-size: 0.98rem;
   line-height: 1.6;
+}
+
+.booking-timing-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-top: 18px;
+  color: var(--white);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.booking-timing-alert strong {
+  color: #FFE082;
+}
+.timing-alert-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .booking-quick-features {
@@ -1865,6 +1945,14 @@ p:last-child {
 }
 .form-group.has-error .error-msg {
   display: block;
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--teal-dark);
+  margin-top: 4px;
+  font-weight: 500;
 }
 
 .btn-submit {

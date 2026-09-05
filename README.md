@@ -20,10 +20,25 @@ A fast, mobile-first static website for The Child Compass. It uses only HTML, CS
 
 The chat interface is included, but it is deliberately not active until a secure backend is deployed. Follow [the worker setup guide](worker/README.md), then replace `https://YOUR-WORKER.workers.dev/chat` in `index.html` with the deployed Worker `/chat` URL. Never add an OpenAI API key to the website files or GitHub repository.
 
+## Android App & Google Play Store (Capacitor)
+
+The Child Compass is configured with **Capacitor** to build native Android packages:
+
+- **Build web bundle:** `npm run build` (bundles web files into `www/`)
+- **Regenerate app icons:** `npm run icons:generate` (creates standard Android mipmap densities + 512x512 Play Store icon)
+- **Sync web changes to Android:** `npm run cap:sync`
+- **Open project in Android Studio:** `npm run cap:open` (or open the `android/` folder in Android Studio)
+- **Build Release Bundle (`.aab`):** In Android Studio, go to **Build → Generate Signed Bundle / APK → Android App Bundle**.
+
 ## Files
 
 - `index.html` - content, SEO metadata, and structure
+- `privacy.html` - Google Play-compliant privacy policy and patient data disclosure
 - `styles.css` - responsive visual design
-- `script.js` - mobile navigation
-- `assets/` - supplied practice/education visuals
+- `script.js` - mobile navigation and interactive logic
+- `assets/` - practice visuals, posters, and brand logo
+- `android/` - native Android Studio project
+- `capacitor.config.json` - Capacitor app configuration (`com.thechildcompass.app`)
+- `play-store-icon-512.png` - 512x512 Google Play Store graphic asset
+- `scripts/` - build and icon generation scripts
 - `worker/` - secure server-side AI chat backend and deployment instructions

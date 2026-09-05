@@ -6,10 +6,20 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "build": "node scripts/build-app.js",
+    "icons:generate": "node scripts/generate-icons.js",
+    "cap:sync": "node scripts/build-app.js && npx cap sync android",
+    "cap:open": "npx cap open android",
     "test": "playwright test"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.1",
     "@playwright/test": "^1.63.0",
-    "@types/node": "^26.4.1"
+    "@types/node": "^26.4.1",
+    "jimp": "^1.6.1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/core": "^8.5.1"
   }
 }
