@@ -423,6 +423,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Entire Parent Pearl card clickable + keyboard accessible
+  document.querySelectorAll('[data-guide]').forEach(card => {
+    const openCardGuide = () => {
+      const guideKey = card.dataset.guide;
+      const modal = document.getElementById(`${guideKey}-guide`);
+      if (modal) modal.showModal();
+    };
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-open-guide]')) return;
+      openCardGuide();
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openCardGuide();
+      }
+    });
+  });
+
+  // Media frame keyboard support (Enter/Space to expand guide)
+  document.querySelectorAll('.media-frame[data-open-guide]').forEach(frame => {
+    frame.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const guideKey = frame.dataset.openGuide;
+        const modal = document.getElementById(`${guideKey}-guide`);
+        if (modal) modal.showModal();
+      }
+    });
+  });
+
   // Handle dialog close buttons & background click dismissal
   document.querySelectorAll('dialog').forEach(dialog => {
     dialog.querySelectorAll('.modal-close-btn, .modal-close-action, .dialog-close').forEach(closeBtn => {
@@ -661,7 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appendChatMessage(matched.reply, 'bot');
           } else {
             appendChatMessage(
-              "Thank you for asking! For specific medical diagnosis, dosage, or tailored advice for your child, please chat with our front desk team on WhatsApp (+91 98765 43210) or book a consult with Dr. Vishnuvardhan K at our Vikarabad clinic (Opp. Raghavendra Swamy Temple, Alampally Road).",
+              "Thank you for asking! For specific medical diagnosis, dosage, or tailored advice for your child, please chat with our front desk team on WhatsApp (+91 98765 43210) or book a consult with Dr. Vishnuvardhan K at our Vikarabad clinic (4-1-479, Opp. Raghavendra Swamy temple, APHB Colony Phase -II, MIG-80, Alampally Road).",
               'bot'
             );
           }

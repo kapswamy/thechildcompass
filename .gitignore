@@ -1,0 +1,12 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+# Environment & Secrets
+.env
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
