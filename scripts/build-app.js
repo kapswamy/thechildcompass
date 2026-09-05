@@ -23,7 +23,9 @@ const filesToCopy = [
   'chat.css',
   'brand-overrides.css',
   'guide-overrides.css',
-  'script.js'
+  'script.js',
+  'favicon.png',
+  'verifyforzoho.html'
 ];
 
 for (const file of filesToCopy) {
